@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "label": "g1-pause50",
+  "scenario": "gc-sim",
+  "startedAt": "2026-10-25T17:07:46.401184364Z",
+  "warmupSec": 10.0,
+  "environment": {
+    "cores": "4",
+    "java": "21.0.12.1+1-1-24.04.4-Ubuntu",
+    "jvm_args": "-Djavax.net.ssl.trustStore\u003d/etc/ssl/certs/java/cacerts -Djavax.net.ssl.trustStoreType\u003dJKS -Dhttps.proxyHost\u003d127.0.0.1 -Dhttps.proxyPort\u003d44219 -Dhttp.nonProxyHosts\u003dlocalhost|127.0.0.1|::1|127.*|0.*|::|169.254.*|api.anthropic.com|api-staging.anthropic.com|api-pr-preview.anthropic.com|mcp-proxy.anthropic.com|mcp-proxy-staging.anthropic.com|registry.npmjs.org|jsr.io|npm.jsr.io|pypi.org|files.pythonhosted.org|index.crates.io|proxy.golang.org|host.docker.internal|10.*|172.16.*|172.17.*|172.18.*|172.19.*|172.20.*|172.21.*|172.22.*|172.23.*|172.24.*|172.25.*|172.26.*|172.27.*|172.28.*|172.29.*|172.30.*|172.31.*|192.168.*|100.64.0.0/10|*.svc.cluster.local|*.svc.cluster.local -Djdk.http.auth.tunneling.disabledSchemes\u003d -Djdk.http.auth.proxying.disabledSchemes\u003d -Xms4g -Xmx4g -XX:+UseG1GC -XX:MaxGCPauseMillis\u003d50"
+  },
+  "mods": [],
+  "stats": {
+    "frames": 10571,
+    "durationSec": 20.000873341,
+    "avgFps": 528.5269207885236,
+    "meanFrameMs": 1.8920512100085138,
+    "stdDevFrameMs": 3.2144459044766727,
+    "p50FrameMs": 1.699518,
+    "p95FrameMs": 1.832015,
+    "p99FrameMs": 3.544981699999935,
+    "p999FrameMs": 36.15999130000062,
+    "maxFrameMs": 143.122156,
+    "low1PctFps": 57.765111928070496,
+    "low01PctFps": 11.798223335150775,
+    "spikes": 36,
+    "framesOver50Ms": 6
+  },
+  "droppedFrames": 0,
+  "gc": {
+    "collector": "G1 Young Generation, G1 Concurrent GC, G1 Old Generation",
+    "pauses": 29,
+    "totalMs": 1339.0,
+    "maxMs": 141.0,
+    "p99Ms": 139.04,
+    "droppedEvents": 0
+  },
+  "heap": {
+    "maxMb": 4096.0,
+    "avgUsedMb": 1466.8793022059187,
+    "peakUsedMb": 2080.048599243164
+  },
+  "avgProcessCpuPct": 32.23355618181404,
+  "chunks": {
+    "maxChunks": 0,
+    "msTo50Pct": -1,
+    "msTo90Pct": -1,
+    "msTo100Pct": -1,
+    "samples": 0
+  }
+}

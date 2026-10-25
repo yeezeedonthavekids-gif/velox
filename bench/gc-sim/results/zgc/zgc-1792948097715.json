@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "label": "zgc",
+  "scenario": "gc-sim",
+  "startedAt": "2026-10-25T17:08:17.702680847Z",
+  "warmupSec": 10.0,
+  "environment": {
+    "cores": "4",
+    "java": "21.0.12.1+1-1-24.04.4-Ubuntu",
+    "jvm_args": "-Djavax.net.ssl.trustStore\u003d/etc/ssl/certs/java/cacerts -Djavax.net.ssl.trustStoreType\u003dJKS -Dhttps.proxyHost\u003d127.0.0.1 -Dhttps.proxyPort\u003d44219 -Dhttp.nonProxyHosts\u003dlocalhost|127.0.0.1|::1|127.*|0.*|::|169.254.*|api.anthropic.com|api-staging.anthropic.com|api-pr-preview.anthropic.com|mcp-proxy.anthropic.com|mcp-proxy-staging.anthropic.com|registry.npmjs.org|jsr.io|npm.jsr.io|pypi.org|files.pythonhosted.org|index.crates.io|proxy.golang.org|host.docker.internal|10.*|172.16.*|172.17.*|172.18.*|172.19.*|172.20.*|172.21.*|172.22.*|172.23.*|172.24.*|172.25.*|172.26.*|172.27.*|172.28.*|172.29.*|172.30.*|172.31.*|192.168.*|100.64.0.0/10|*.svc.cluster.local|*.svc.cluster.local -Djdk.http.auth.tunneling.disabledSchemes\u003d -Djdk.http.auth.proxying.disabledSchemes\u003d -Xms4g -Xmx4g -XX:+UseZGC -XX:+ZGenerational"
+  },
+  "mods": [],
+  "stats": {
+    "frames": 6874,
+    "durationSec": 20.001138099,
+    "avgFps": 343.6804428815819,
+    "meanFrameMs": 2.909679676898458,
+    "stdDevFrameMs": 1.5977662461014073,
+    "p50FrameMs": 1.8641415,
+    "p95FrameMs": 5.5243418,
+    "p99FrameMs": 6.605084109999995,
+    "p999FrameMs": 13.766470478000457,
+    "maxFrameMs": 29.74288,
+    "low1PctFps": 113.79302957663897,
+    "low01PctFps": 55.91998923204687,
+    "spikes": 225,
+    "framesOver50Ms": 0
+  },
+  "droppedFrames": 0,
+  "gc": {
+    "collector": "ZGC Minor Cycles, ZGC Minor Pauses, ZGC Major Cycles, ZGC Major Pauses",
+    "pauses": 3,
+    "totalMs": 0.0,
+    "maxMs": 0.0,
+    "p99Ms": 0.0,
+    "droppedEvents": 0
+  },
+  "heap": {
+    "maxMb": 4096.0,
+    "avgUsedMb": 2435.8734177215188,
+    "peakUsedMb": 3538.0
+  },
+  "avgProcessCpuPct": 25.60984055612573,
+  "chunks": {
+    "maxChunks": 0,
+    "msTo50Pct": -1,
+    "msTo90Pct": -1,
+    "msTo100Pct": -1,
+    "samples": 0
+  }
+}

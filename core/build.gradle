@@ -1,0 +1,5 @@
+dependencies {
+    // Minecraft ships Gson, so the mod gets it for free; the launcher shades it.
+    compileOnly 'com.google.code.gson:gson:2.13.2'
+    testImplementation 'com.google.code.gson:gson:2.13.2'
+}

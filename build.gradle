@@ -1,0 +1,33 @@
+subprojects {
+    apply plugin: 'java'
+
+    group = 'dev.velox'
+    version = '0.1.0'
+
+    repositories {
+        mavenCentral()
+    }
+
+    java {
+        // Launcher must run on any Java 21+ install; the mod (Java 25) also compiles core sources.
+        toolchain { languageVersion = JavaLanguageVersion.of(21) }
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        options.release = 21
+        options.encoding = 'UTF-8'
+        options.compilerArgs += ['-Xlint:all,-serial,-processing', '-Werror']
+    }
+
+    dependencies {
+        testImplementation platform('org.junit:junit-bom:5.13.4')
+        testImplementation 'org.junit.jupiter:junit-jupiter'
+        testImplementation 'org.junit.jupiter:junit-jupiter-params'
+        testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    }
+
+    test {
+        useJUnitPlatform()
+        testLogging { events 'failed'; exceptionFormat 'full' }
+    }
+}

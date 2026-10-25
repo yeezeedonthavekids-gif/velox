@@ -1,0 +1,29 @@
+g1-default: avg 478 fps, 1% low 25, 0.1% low 5, max 263.4 ms, GC 26 pauses max 261.00 ms
+g1-pause50: avg 478 fps, 1% low 27, 0.1% low 5, max 420.6 ms, GC 29 pauses max 417.00 ms
+zgc: avg 346 fps, 1% low 82, 0.1% low 36, max 50.1 ms, GC 6 pauses max 0.00 ms
+g1-default: avg 501 fps, 1% low 33, 0.1% low 5, max 233.4 ms, GC 19 pauses max 231.00 ms
+g1-pause50: avg 530 fps, 1% low 52, 0.1% low 9, max 190.0 ms, GC 30 pauses max 183.00 ms
+zgc: avg 333 fps, 1% low 78, 0.1% low 29, max 78.3 ms, GC 3 pauses max 0.00 ms
+g1-default: avg 508 fps, 1% low 39, 0.1% low 6, max 267.7 ms, GC 15 pauses max 265.00 ms
+g1-pause50: avg 529 fps, 1% low 58, 0.1% low 12, max 143.1 ms, GC 29 pauses max 141.00 ms
+zgc: avg 344 fps, 1% low 114, 0.1% low 56, max 29.7 ms, GC 3 pauses max 0.00 ms
+
+=== g1-default (baseline) vs g1-pause50 ===
+Baseline: 3 runs from /home/user/velox/bench/gc-sim/results/g1-default
+Candidate: 3 runs from /home/user/velox/bench/gc-sim/results/g1-pause50
+avg_fps        base    495.85 ?15.75   cand    512.18 ?29.30   ?   +16.33 ( +3.29%) 95%CI [-44.05, +76.71] p=0.4564  NO_SIGNIFICANT_DIFFERENCE
+1%_low_fps     base     32.15 ?7.04    cand     45.75 ?16.44   ?   +13.60 (+42.31%) 95%CI [-21.33, +48.54] p=0.2879  NO_SIGNIFICANT_DIFFERENCE
+0.1%_low_fps   base      5.23 ?0.29    cand      8.29 ?3.63    ?    +3.06 (+58.55%) 95%CI [-5.87, +12.00] p=0.2810  NO_SIGNIFICANT_DIFFERENCE
+p99_frame_ms   base      3.56 ?1.58    cand      3.66 ?1.08    ?    +0.10 ( +2.75%) 95%CI [-3.13, +3.33] p=0.9342  NO_SIGNIFICANT_DIFFERENCE
+spikes         base     44.33 ?32.15   cand     37.67 ?9.61    ?    -6.67 (-15.04%) 95%CI [-79.07, +65.73] p=0.7591  NO_SIGNIFICANT_DIFFERENCE
+Verdicts need the 95% CI to exclude zero AND |change| >= 1.0%.
+
+=== g1-default (baseline) vs zgc ===
+Baseline: 3 runs from /home/user/velox/bench/gc-sim/results/g1-default
+Candidate: 3 runs from /home/user/velox/bench/gc-sim/results/zgc
+avg_fps        base    495.85 ?15.75   cand    341.10 ?6.76    ?  -154.75 (-31.21%) 95%CI [-188.23, -121.28] p=0.0010  REGRESSION
+1%_low_fps     base     32.15 ?7.04    cand     91.33 ?19.53   ?   +59.18 (+184.08%) 95%CI [+16.47, +101.89] p=0.0239  IMPROVEMENT
+0.1%_low_fps   base      5.23 ?0.29    cand     40.36 ?13.85   ?   +35.13 (+671.94%) 95%CI [+0.75, +69.52] p=0.0480  IMPROVEMENT
+p99_frame_ms   base      3.56 ?1.58    cand      7.90 ?1.13    ?    +4.34 (+121.75%) 95%CI [+1.10, +7.58] p=0.0216  REGRESSION
+spikes         base     44.33 ?32.15   cand    417.00 ?173.07  ?  +372.67 (+840.60%) 95%CI [-38.67, +784.00] p=0.0605  NO_SIGNIFICANT_DIFFERENCE
+Verdicts need the 95% CI to exclude zero AND |change| >= 1.0%.

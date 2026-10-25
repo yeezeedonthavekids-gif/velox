@@ -1,0 +1,35 @@
+plugins {
+    id 'application'
+}
+
+dependencies {
+    implementation project(':core')
+    implementation 'com.google.code.gson:gson:2.13.2'
+}
+
+application {
+    mainClass = 'dev.velox.launcher.Main'
+}
+
+// A single self-contained jar: core + Gson, no other runtime dependencies.
+tasks.register('fatJar', Jar) {
+    group = 'build'
+    archiveBaseName = 'velox-launcher'
+    archiveClassifier = ''
+    archiveVersion = project.version
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest { attributes 'Main-Class': application.mainClass, 'Implementation-Version': project.version }
+    from sourceSets.main.output
+    dependsOn configurations.runtimeClasspath
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } } {
+        exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/versions/9/module-info.class', 'module-info.class'
+    }
+    // If the Fabric mod has been built (./mod), bundle it so the launcher can install it.
+    from(rootProject.file('mod/build/libs')) {
+        include 'velox-*.jar'
+        exclude '*-sources.jar'
+        into 'bundled'
+        rename { 'velox-mod.jar' }
+    }
+}
+assemble.dependsOn fatJar

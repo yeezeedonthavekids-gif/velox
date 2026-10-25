@@ -1,0 +1,5 @@
+// Root build: the Minecraft-independent modules. They build with nothing but Maven Central.
+// The Fabric mod lives in ./mod as a separate build because Loom needs Mojang and Fabric
+// servers at configuration time; keeping it separate means `core` and `launcher` always build.
+rootProject.name = 'velox'
+include 'core', 'launcher'

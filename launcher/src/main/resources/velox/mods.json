@@ -1,0 +1,47 @@
+{
+  "_comment": "Curated optimization set. Order is priority: when two mods conflict, the later optional one is dropped. Each jar is downloaded from Modrinth at install time and verified by SHA-512; nothing is redistributed. 'expectedLicense' is informational; the resolver reports the license Modrinth currently lists.",
+  "mods": [
+    {
+      "slug": "fabric-api", "name": "Fabric API", "role": "Required Fabric hooks (HUD, key mappings, events)",
+      "required": true, "defaultEnabled": true, "baseline": true, "expectedLicense": "Apache-2.0"
+    },
+    {
+      "slug": "sodium", "name": "Sodium", "role": "Rendering engine: chunk meshing, culling, draw batching. The largest single FPS gain.",
+      "required": true, "defaultEnabled": true, "baseline": false, "expectedLicense": "PolyForm-Shield-1.0.0"
+    },
+    {
+      "slug": "lithium", "name": "Lithium", "role": "Game logic (physics, AI, ticking). Helps the integrated server in singleplayer and client-side entity ticking.",
+      "required": false, "defaultEnabled": true, "baseline": false, "expectedLicense": "LGPL-3.0-only"
+    },
+    {
+      "slug": "ferrite-core", "name": "FerriteCore", "role": "Memory: deduplicates block-state and model data, lowering heap use and GC work.",
+      "required": false, "defaultEnabled": true, "baseline": false, "expectedLicense": "MIT"
+    },
+    {
+      "slug": "immediatelyfast", "name": "ImmediatelyFast", "role": "Batches immediate-mode rendering (HUD, text, entities, maps), which Sodium does not cover.",
+      "required": false, "defaultEnabled": true, "baseline": false, "expectedLicense": "LGPL-3.0-or-later"
+    },
+    {
+      "slug": "entityculling", "name": "Entity Culling", "role": "Skips entities and block entities hidden behind terrain (ray-cast occlusion; complements Sodium's chunk-level culling).",
+      "required": false, "defaultEnabled": true, "baseline": false, "expectedLicense": "see project page"
+    },
+    {
+      "slug": "modernfix", "name": "ModernFix", "role": "Faster startup and lower memory use from resource loading and model fixes.",
+      "required": false, "defaultEnabled": true, "baseline": false, "expectedLicense": "LGPL-3.0-only"
+    },
+    {
+      "slug": "dynamic-fps", "name": "Dynamic FPS", "role": "Throttles rendering when the window is unfocused or hidden. Vanilla only throttles minimized windows.",
+      "required": false, "defaultEnabled": true, "baseline": false, "expectedLicense": "MIT"
+    },
+    {
+      "slug": "moreculling", "name": "More Culling", "role": "Extra face culling (leaves, item frames, ...). Off by default: it can change leaf visuals.",
+      "required": false, "defaultEnabled": false, "baseline": false, "expectedLicense": "see project page"
+    },
+    {
+      "slug": "c2me-fabric", "name": "C2ME", "role": "Parallel chunk generation for singleplayer worlds. Off by default: experimental and only helps world generation.",
+      "required": false, "defaultEnabled": false, "baseline": false, "expectedLicense": "MIT"
+    }
+  ],
+  "conflicts": [
+  ]
+}

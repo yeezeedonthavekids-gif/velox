@@ -1,0 +1,25 @@
+{
+	"schemaVersion": 1,
+	"id": "velox",
+	"version": "${version}",
+	"name": "Velox",
+	"description": "Performance HUD, presets, custom crosshair and a built-in benchmark recorder. Optimizations come from the mods the Velox launcher installs alongside it (Sodium, Lithium, FerriteCore, ...).",
+	"authors": ["Velox contributors"],
+	"license": "MIT",
+	"environment": "client",
+	"entrypoints": {
+		"client": ["dev.velox.mod.VeloxMod"]
+	},
+	"mixins": [
+		{ "config": "velox.mixins.json", "environment": "client" }
+	],
+	"depends": {
+		"fabricloader": ">=0.20.1",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"sodium": "*"
+	}
+}
