@@ -25,7 +25,7 @@ rewrite would. Velox:
 |---|---|
 | `core` (presets, statistics, reports, JVM advice) | Built and tested: 36 unit tests |
 | `launcher` (install, mods, Java runtime, Microsoft sign-in, launch, CLI, GUI) | Built and tested: 26 tests, including a full install → launch run against mock Mojang/Fabric/Modrinth/Microsoft servers that starts a real JVM process |
-| `mod` (HUD, crosshair, presets, benchmarks, settings screen) | **Not yet compiled against Minecraft.** The build environment could not reach Mojang or Fabric. Every Minecraft/Fabric API call was checked against the Fabric API 0.165.0+26.3 and Sodium sources, and the code compiles against signature stubs. GitHub Actions (`.github/workflows/build.yml`) compiles it against the real game. |
+| `mod` (HUD, crosshair, presets, benchmarks, settings screen) | Compiles against the real Minecraft 26.3 + Fabric API 0.165.0 in GitHub Actions. **Not yet run in game**; the first in-game test is yours. |
 | In-game FPS results | **None yet.** They have to come from your hardware; see the benchmarking guide. |
 
 ## Build
@@ -39,7 +39,7 @@ cd mod && ./gradlew build && cd ..     # Fabric mod → mod/build/libs/velox-0.1
                                        # (bundles the mod if it has been built)
 ```
 
-Or push to GitHub: CI builds all three and uploads `velox-launcher` with the mod inside.
+Or download from GitHub Actions: each push builds all three and uploads `velox-launcher` (mod bundled inside) under the run's Artifacts.
 
 ## Run
 
@@ -81,9 +81,9 @@ benchmark. All are rebindable under Controls.
 
 ## Known limitations
 
-- The mod has not been compiled or run against real Minecraft 26.3 here (network policy). Expect
-  possible API fixes on the first CI build. The riskiest calls are noted in
-  [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+- The mod compiles against Minecraft 26.3 in CI but has not been run in game yet. Compiling
+  proves the API calls exist, not that they behave as expected. The calls most worth watching
+  on first run are listed in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 - No in-game benchmark numbers are included. The only measurements are the synthetic GC experiment.
 - Microsoft sign-in requires your own Mojang-approved Azure client ID.
 - Sodium settings changed by switching presets in game take effect on the next launch (they live

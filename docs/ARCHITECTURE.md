@@ -63,8 +63,9 @@ velox/
 
 ## Mod API verification status
 
-The mod could not be compiled against the real 26.3 jar in the build environment. Each call
-falls into one of these groups:
+All calls below compile against the real 26.3 jar (CI run on 2026-10-25). Before that, the
+mod was written without access to the jar, and the calls fell into these groups. The second
+group is still the one to watch at runtime:
 
 **Seen in Fabric API 0.165.0+26.3 or Sodium (Oct 2026) sources:**
 `HudElement.extractRenderState(GuiGraphicsExtractor, DeltaTracker)`, `HudElementRegistry`,
