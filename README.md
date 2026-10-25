@@ -28,6 +28,19 @@ rewrite would. Velox:
 | `mod` (HUD, crosshair, presets, benchmarks, settings screen) | Compiles against the real Minecraft 26.3 + Fabric API 0.165.0 in GitHub Actions. **Not yet run in game**; the first in-game test is yours. |
 | In-game FPS results | **None yet.** They have to come from your hardware; see the benchmarking guide. |
 
+## Install on Windows
+
+1. Open the repo's **Releases** page and download `Velox-<version>.exe`.
+2. Run it. It installs for your user only (no admin prompt) and adds Velox to the Start Menu and
+   desktop. Java is bundled; you don't need to install it.
+3. Windows SmartScreen may say *"Windows protected your PC"*, because the installer isn't
+   code-signed yet. Click **More info → Run anyway**. (Signing needs a paid certificate, which
+   commercial launchers like Lunar Client buy.)
+
+Prefer no installer? `Velox-<version>-portable.zip` contains the same app as a folder; unzip it
+and run `Velox.exe`. Uninstall from *Settings → Apps*. Your data in `%APPDATA%\.velox` is kept
+unless you delete it.
+
 ## Build
 
 Requirements: JDK 21+ for the launcher and core, JDK 25 for the mod.
@@ -37,7 +50,12 @@ Requirements: JDK 21+ for the launcher and core, JDK 25 for the mod.
 cd mod && ./gradlew build && cd ..     # Fabric mod → mod/build/libs/velox-0.1.0.jar
 ./gradlew :launcher:fatJar             # launcher → launcher/build/libs/velox-launcher-0.1.0.jar
                                        # (bundles the mod if it has been built)
+# Windows only (needs WiX 3): installer + portable zip in dist/
+.\packaging\build-windows.ps1 -Jar launcher\build\libs\velox-launcher-0.1.0.jar
 ```
+
+Pushing a tag like `v0.1.0` makes CI build the Windows installer on a Windows runner and
+publish it as a GitHub Release.
 
 Or download from GitHub Actions: each push builds all three and uploads `velox-launcher` (mod bundled inside) under the run's Artifacts.
 

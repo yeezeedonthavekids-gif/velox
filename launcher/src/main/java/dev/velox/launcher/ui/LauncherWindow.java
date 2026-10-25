@@ -89,6 +89,8 @@ public final class LauncherWindow {
 
     JFrame build() {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        java.net.URL icon = LauncherWindow.class.getResource("/velox/icon.png");
+        if (icon != null) frame.setIconImage(new ImageIcon(icon).getImage());
         JPanel root = new JPanel(new BorderLayout(0, 14));
         root.setBackground(BG);
         root.setBorder(new EmptyBorder(18, 20, 18, 20));

@@ -1,7 +1,14 @@
 # Builds and tests everything on every push. The Fabric mod needs Mojang and Fabric servers
 # to compile, so CI is where it is first compiled against the real Minecraft 26.3 jar.
 name: build
-on: [push, pull_request]
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+
+permissions:
+  contents: write   # lets tagged builds publish a GitHub Release
 
 jobs:
   core-and-launcher:
@@ -56,3 +63,41 @@ jobs:
         with:
           name: velox-launcher
           path: launcher/build/libs/velox-launcher-*.jar
+
+  windows-installer:
+    needs: package
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-java@v5
+        with:
+          java-version: '21'
+          distribution: 'microsoft'
+      - uses: actions/download-artifact@v8
+        with:
+          name: velox-launcher
+          path: launcher-jar
+      - name: WiX Toolset (needed by jpackage for .exe installers)
+        shell: pwsh
+        run: |
+          if (-not (Get-Command candle.exe -ErrorAction SilentlyContinue)) {
+            $wix = Get-ChildItem 'C:\Program Files (x86)' -Filter 'WiX Toolset v3*' -Directory -ErrorAction SilentlyContinue | Select-Object -First 1
+            if (-not $wix) { choco install wixtoolset -y --no-progress; $wix = Get-ChildItem 'C:\Program Files (x86)' -Filter 'WiX Toolset v3*' -Directory | Select-Object -First 1 }
+            Add-Content $env:GITHUB_PATH (Join-Path $wix.FullName 'bin')
+          }
+      - name: build installer
+        shell: pwsh
+        run: ./packaging/build-windows.ps1 -Jar (Get-ChildItem launcher-jar/velox-launcher-*.jar | Select-Object -First 1).FullName
+      - uses: actions/upload-artifact@v7
+        with:
+          name: velox-windows
+          path: dist/
+      - name: publish release (tags only)
+        if: startsWith(github.ref, 'refs/tags/v')
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ github.ref_name }}" (Get-ChildItem dist/*.exe, dist/*.zip) `
+            --title "Velox ${{ github.ref_name }}" `
+            --notes "Download **Velox-*.exe** and run it. No Java needed; it's bundled. Windows may show a SmartScreen warning because the installer isn't code-signed yet: click *More info* -> *Run anyway*."

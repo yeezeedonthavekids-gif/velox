@@ -1,0 +1,1 @@
+java.base,java.compiler,java.desktop,java.net.http,java.sql,java.management,jdk.management,jdk.crypto.ec,jdk.charsets,jdk.localedata
